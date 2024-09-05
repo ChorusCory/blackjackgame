@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4wp8i6q8hp88"]
+
+[ext_resource type="Script" path="res://Logic.gd" id="1_3qodn"]
+[ext_resource type="AudioStream" uid="uid://dsr0tqgrxtku5" path="res://mus/that.ogg" id="2_fcaqn"]
+[ext_resource type="FontFile" uid="uid://byw8dbpncook4" path="res://NiseJSRF.TTF" id="2_x1l4h"]
+[ext_resource type="AudioStream" uid="uid://q568il08nx7j" path="res://mus/barry.mp3" id="3_oisb1"]
+
+[sub_resource type="Theme" id="Theme_pwwp0"]
+default_font = ExtResource("2_x1l4h")
+/fonts/font = ExtResource("2_x1l4h")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7j203"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("2_fcaqn")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_oisb1")
+stream_1/weight = 1.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Logic" type="Node2D" parent="."]
+script = ExtResource("1_3qodn")
+
+[node name="BetEdit" type="LineEdit" parent="Logic"]
+offset_left = 750.0
+offset_top = 419.0
+offset_right = 1028.0
+offset_bottom = 555.0
+theme_override_fonts/font = ExtResource("2_x1l4h")
+virtual_keyboard_type = 2
+
+[node name="Bet" type="Button" parent="Logic"]
+offset_left = 1116.0
+offset_top = 410.0
+offset_right = 1279.0
+offset_bottom = 543.0
+theme = SubResource("Theme_pwwp0")
+theme_override_fonts/font = ExtResource("2_x1l4h")
+text = "Bet!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_7j203")
+pitch_scale = 0.75
+autoplay = true

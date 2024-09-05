@@ -1,0 +1,87 @@
+extends Node2D
+var deck = ["ac", "ad", "ah", "as", "2c", "2d", "2h", "2s", "3c", "3d", "3h", "3s", "4c", "4d", "4h", "4s", "5c", "5d", "5h", "5s", "6c", "6d", "6h", "6s", "7c", "7d", "7h", "7s", "8c", "8d", "8h", "8s", "9c", "9d", "9h", "9s", "10c", "10d", "10h", "10s", "jc", "jd", "jh", "js", "qc", "qd", "qh", "qs", "kc", "kd", "kh", "ks"]
+var aces = ["ac", "ad", "ah", "as"]
+var twos = ["2c", "2d", "2h", "2s"]
+var threes = ["3c", "3d", "3h", "3s"]
+var fours = ["4c", "4d", "4h", "4s"]
+var fives = ["5c", "5d", "5h", "5s"]
+var sixes = ["6c", "6d", "6h", "6s"]
+var sevens = ["7c", "7d", "7h", "7s"]
+var eights = ["8c", "8d", "8h", "8s"]
+var nines = ["9c", "9d", "9h", "9s"]
+var tens = ["10c", "10d", "10h", "10s", "jc", "jd", "jh", "js", "qc", "qd", "qh", "qs", "kc", "kd", "kh", "ks"]
+var current_place = 0
+var player1_deck = []
+var dealer_deck = []
+var player1_decknum = 0
+var dealer_decknum = 0
+const BLACKJACK_PAY = 1.5
+const WIN_PAY = 1
+const INSURANCE_PAY = 2
+const BLACKJACK = 21
+const STAY_ON_SOFT_17 = true
+
+func get_card_value(card: String) -> int:
+	if aces.has(card):
+		return 1
+	elif twos.has(card):
+		return 2
+	elif threes.has(card):
+		return 3
+	elif fours.has(card):
+		return 4
+	elif fives.has(card):
+		return 5
+	elif sixes.has(card):
+		return 6
+	elif sevens.has(card):
+		return 7
+	elif eights.has(card):
+		return 8
+	elif nines.has(card):
+		return 9
+	elif tens.has(card):
+		return 10
+	else:
+		return 0
+		
+func deal():
+	if current_place > 48:
+		return
+	for i in range(4):
+		if (i % 2) != 1:
+			player1_deck.append(deck[current_place])
+		else:
+			dealer_deck.append(deck[current_place])
+		current_place += 1
+	print(player1_deck, dealer_deck)
+
+# Create a Hand value calculation ( Aces and such) function
+func deck_value(playerdeck: Array, dealerdeck: Array):
+	player1_decknum = 0
+	dealer_decknum = 0
+	for i in range(playerdeck.size()):
+		player1_decknum += get_card_value(playerdeck[i])
+		print(player1_decknum)
+	for i in range(dealerdeck.size()):
+		dealer_decknum += get_card_value(dealerdeck[i])
+		print(dealer_decknum)
+# Create a player action function to make player actions in logic
+func bet(amount: int):
+	
+		
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var bet_edit = $BetEdit
+	var bet_text = bet_edit.text
+	var bet_button = $Bet
+	randomize()
+	deck.shuffle()
+	deal()
+	deck_value(player1_deck, dealer_deck)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
