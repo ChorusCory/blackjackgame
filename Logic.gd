@@ -68,9 +68,7 @@ func deck_value(playerdeck: Array, dealerdeck: Array):
 		print(dealer_decknum)
 # Create a player action function to make player actions in logic
 func bet(amount: int):
-	
-		
-
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
