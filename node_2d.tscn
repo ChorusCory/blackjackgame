@@ -39,7 +39,38 @@ theme = SubResource("Theme_pwwp0")
 theme_override_fonts/font = ExtResource("2_x1l4h")
 text = "Bet!"
 
+[node name="Hit" type="Button" parent="Logic"]
+offset_left = 606.0
+offset_top = 674.0
+offset_right = 790.0
+offset_bottom = 786.0
+theme_override_fonts/font = ExtResource("2_x1l4h")
+text = "Hit me!"
+
+[node name="Stand" type="Button" parent="Logic"]
+offset_left = 1195.0
+offset_top = 675.0
+offset_right = 1379.0
+offset_bottom = 787.0
+theme_override_fonts/font = ExtResource("2_x1l4h")
+text = "I'll stand..."
+
+[node name="DealAmount" type="Label" parent="Logic"]
+offset_left = 651.0
+offset_top = 35.0
+offset_right = 1244.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("2_x1l4h")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_7j203")
 pitch_scale = 0.75
 autoplay = true
+
+[connection signal="text_changed" from="Logic/BetEdit" to="Logic" method="_on_bet_edit_text_changed"]
+[connection signal="pressed" from="Logic/Bet" to="Logic" method="_on_bet_pressed"]
+[connection signal="pressed" from="Logic/Hit" to="Logic" method="_on_hit_pressed"]
+[connection signal="pressed" from="Logic/Stand" to="Logic" method="_on_stand_pressed"]

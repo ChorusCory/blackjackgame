@@ -15,6 +15,10 @@ var player1_deck = []
 var dealer_deck = []
 var player1_decknum = 0
 var dealer_decknum = 0
+@onready var bet_edit = $BetEdit
+@onready var bet_text = bet_edit.text
+@onready var deal_amount = $DealAmount
+@onready var deal_text = deal_amount.text
 const BLACKJACK_PAY = 1.5
 const WIN_PAY = 1
 const INSURANCE_PAY = 2
@@ -66,20 +70,33 @@ func deck_value(playerdeck: Array, dealerdeck: Array):
 	for i in range(dealerdeck.size()):
 		dealer_decknum += get_card_value(dealerdeck[i])
 		print(dealer_decknum)
-# Create a player action function to make player actions in logic
-func bet(amount: int):
-	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var bet_edit = $BetEdit
-	var bet_text = bet_edit.text
-	var bet_button = $Bet
 	randomize()
 	deck.shuffle()
-	deal()
-	deck_value(player1_deck, dealer_deck)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func _on_bet_pressed():
+	deal()
+	deck_value(player1_deck, dealer_deck)
+	deal_text = dealer_decknum
+
+func _on_bet_edit_text_changed(new_text):
+	bet_text = new_text
+
+func _on_hit_pressed():
+	player1_deck.append(deck[current_place])
+	current_place += 1
+	deck_value(player1_deck, dealer_deck)
+	if player1_decknum > 21:
+		print("Bust!")
+		print(player1_decknum)
+		player1_deck.clear()
+		dealer_deck.clear()
+
+func _on_stand_pressed():
+	pass # Replace with function body.

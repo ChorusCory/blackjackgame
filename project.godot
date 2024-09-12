@@ -13,7 +13,7 @@ config_version=5
 config/name="blackjack teehee"
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-boot_splash/bg_color=Color(0.184995, 0.535743, 0.301634, 1)
+boot_splash/bg_color=Color(0.227451, 0.478431, 0.239216, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
@@ -21,9 +21,10 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/borderless=true
+window/stretch/mode="canvas_items"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.228265, 0.480144, 0.24041, 1)
