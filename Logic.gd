@@ -15,15 +15,16 @@ var player1_deck = []
 var dealer_deck = []
 var player1_decknum = 0
 var dealer_decknum = 0
+var bet_amount = 0
 @onready var bet_edit = $BetEdit
 @onready var bet_text = bet_edit.text
 @onready var deal_amount = $DealAmount
-@onready var deal_text = deal_amount.text
+@onready var play_amount = $PlayAmount
 const BLACKJACK_PAY = 1.5
 const WIN_PAY = 1
 const INSURANCE_PAY = 2
 const BLACKJACK = 21
-const STAY_ON_SOFT_17 = true
+const STAND_ON_SOFT_17 = true
 
 func get_card_value(card: String) -> int:
 	if aces.has(card):
@@ -60,6 +61,16 @@ func deal():
 		current_place += 1
 	print(player1_deck, dealer_deck)
 
+func dealer_only_deal():
+	if current_place > 50:
+		return
+	dealer_deck.append(deck[current_place])
+	current_place += 1
+	print(dealer_deck)
+	dealer_decknum = 0
+	for i in range(dealer_deck.size()):
+		dealer_decknum += get_card_value(dealer_deck[i])
+
 # Create a Hand value calculation ( Aces and such) function
 func deck_value(playerdeck: Array, dealerdeck: Array):
 	player1_decknum = 0
@@ -77,13 +88,17 @@ func _ready():
 	deck.shuffle()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_bet_pressed():
+	player1_deck.clear()
+	dealer_deck.clear()
 	deal()
+	bet_amount = int(bet_text)
 	deck_value(player1_deck, dealer_deck)
-	deal_text = dealer_decknum
+	deal_amount.text = str(dealer_decknum)
+	play_amount.text = str(player1_decknum)
 
 func _on_bet_edit_text_changed(new_text):
 	bet_text = new_text
@@ -99,4 +114,4 @@ func _on_hit_pressed():
 		dealer_deck.clear()
 
 func _on_stand_pressed():
-	pass # Replace with function body.
+	dealer_only_deal() # Replace with function body.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4wp8i6q8hp88"]
+[gd_scene load_steps=8 format=3 uid="uid://b4wp8i6q8hp88"]
 
 [ext_resource type="Script" path="res://Logic.gd" id="1_3qodn"]
 [ext_resource type="AudioStream" uid="uid://dsr0tqgrxtku5" path="res://mus/that.ogg" id="2_fcaqn"]
 [ext_resource type="FontFile" uid="uid://byw8dbpncook4" path="res://NiseJSRF.TTF" id="2_x1l4h"]
 [ext_resource type="AudioStream" uid="uid://q568il08nx7j" path="res://mus/barry.mp3" id="3_oisb1"]
+[ext_resource type="AudioStream" uid="uid://c30v4o1i1uaqi" path="res://mus/breathe.ogg" id="5_xi3mi"]
 
 [sub_resource type="Theme" id="Theme_pwwp0"]
 default_font = ExtResource("2_x1l4h")
@@ -11,11 +12,13 @@ default_font = ExtResource("2_x1l4h")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7j203"]
 playback_mode = 1
-streams_count = 2
+streams_count = 3
 stream_0/stream = ExtResource("2_fcaqn")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_oisb1")
 stream_1/weight = 1.0
+stream_2/stream = ExtResource("5_xi3mi")
+stream_2/weight = 1.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -60,6 +63,16 @@ offset_left = 651.0
 offset_top = 35.0
 offset_right = 1244.0
 offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("2_x1l4h")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="PlayAmount" type="Label" parent="Logic"]
+offset_left = 1322.0
+offset_top = 76.0
+offset_right = 1915.0
+offset_bottom = 230.0
 theme_override_fonts/font = ExtResource("2_x1l4h")
 horizontal_alignment = 1
 vertical_alignment = 1
