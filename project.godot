@@ -11,11 +11,15 @@ config_version=5
 [application]
 
 config/name="blackjack teehee"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://title.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.227451, 0.478431, 0.239216, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Lobby="*res://Lobby.gd"
 
 [display]
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwe41loo0urtd"]
+
+[ext_resource type="FontFile" uid="uid://byw8dbpncook4" path="res://NiseJSRF.TTF" id="1_ym8su"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 618.0
+offset_top = 352.0
+offset_right = 1041.0
+offset_bottom = 483.0
+theme_override_fonts/font = ExtResource("1_ym8su")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Room ID"
+alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1106.0
+offset_top = 364.0
+offset_right = 1334.0
+offset_bottom = 474.0
+theme_override_fonts/font = ExtResource("1_ym8su")
+theme_override_font_sizes/font_size = 30
+text = "Join!"

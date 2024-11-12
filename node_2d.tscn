@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4wp8i6q8hp88"]
+[gd_scene load_steps=9 format=3 uid="uid://b4wp8i6q8hp88"]
 
 [ext_resource type="Script" path="res://Logic.gd" id="1_3qodn"]
 [ext_resource type="AudioStream" uid="uid://dsr0tqgrxtku5" path="res://mus/that.ogg" id="2_fcaqn"]
 [ext_resource type="FontFile" uid="uid://byw8dbpncook4" path="res://NiseJSRF.TTF" id="2_x1l4h"]
 [ext_resource type="AudioStream" uid="uid://q568il08nx7j" path="res://mus/barry.mp3" id="3_oisb1"]
 [ext_resource type="AudioStream" uid="uid://c30v4o1i1uaqi" path="res://mus/breathe.ogg" id="5_xi3mi"]
+[ext_resource type="Script" path="res://Lobby.gd" id="6_frqgt"]
 
 [sub_resource type="Theme" id="Theme_pwwp0"]
 default_font = ExtResource("2_x1l4h")
@@ -59,20 +60,18 @@ theme_override_fonts/font = ExtResource("2_x1l4h")
 text = "I'll stand..."
 
 [node name="DealAmount" type="Label" parent="Logic"]
-offset_left = 651.0
-offset_top = 35.0
-offset_right = 1244.0
-offset_bottom = 189.0
+offset_left = 790.0
+offset_right = 990.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("2_x1l4h")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
 [node name="PlayAmount" type="Label" parent="Logic"]
-offset_left = 1322.0
-offset_top = 76.0
-offset_right = 1915.0
-offset_bottom = 230.0
+offset_left = 990.0
+offset_right = 1190.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("2_x1l4h")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -82,6 +81,9 @@ clip_text = true
 stream = SubResource("AudioStreamRandomizer_7j203")
 pitch_scale = 0.75
 autoplay = true
+
+[node name="Lobby" type="Node2D" parent="."]
+script = ExtResource("6_frqgt")
 
 [connection signal="text_changed" from="Logic/BetEdit" to="Logic" method="_on_bet_edit_text_changed"]
 [connection signal="pressed" from="Logic/Bet" to="Logic" method="_on_bet_pressed"]

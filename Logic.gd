@@ -107,11 +107,14 @@ func _on_hit_pressed():
 	player1_deck.append(deck[current_place])
 	current_place += 1
 	deck_value(player1_deck, dealer_deck)
+	deal_amount.text = str(dealer_decknum)
+	play_amount.text = str(player1_decknum)
 	if player1_decknum > 21:
 		print("Bust!")
 		print(player1_decknum)
 		player1_deck.clear()
 		dealer_deck.clear()
+		play_amount.text = "Bust! " + str(player1_decknum)
 
 func _on_stand_pressed():
 	dealer_only_deal() # Replace with function body.

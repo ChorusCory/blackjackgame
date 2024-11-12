@@ -1,2 +1,8 @@
+res://multiplayer.tscn
+res://multi.gd
 res://node_2d.tscn
-res://Logic.gd
+res://title.tscn
+res://join.gd
+res://join.tscn
+res://create.gd
+res://create.tscn

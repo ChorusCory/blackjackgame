@@ -1,1 +1,6 @@
+Button
+LineEdit
 Label
+TextEdit
+RichTextLabel
+Node2D
