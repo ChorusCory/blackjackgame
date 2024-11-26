@@ -9,7 +9,7 @@ signal server_disconnected
 
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
-const MAX_CONNECTIONS = 20
+const MAX_CONNECTIONS = 5
 
 # This will contain player info for every player,
 # with the keys being each player's unique IDs.
@@ -19,7 +19,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"name": "CORY"}
 
 var players_loaded = 0
 
@@ -41,6 +41,8 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+
+	return players
 
 
 func create_game():
@@ -92,6 +94,11 @@ func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
 
+func create_room():
+	var room_id = randi_range(0, 9999)
+	var peer = ENetConnection.new()
+	var error = peer.create_host_bound(DEFAULT_SERVER_IP, PORT)
+	
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()

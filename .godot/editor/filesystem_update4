@@ -1,8 +1,9 @@
-res://multiplayer.tscn
-res://multi.gd
 res://node_2d.tscn
 res://title.tscn
-res://join.gd
+res://multiplayer.tscn
 res://join.tscn
-res://create.gd
 res://create.tscn
+res://Lobby.gd
+res://LinkButton.gd
+res://join.gd
+res://join_server.gd

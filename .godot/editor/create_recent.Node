@@ -1,6 +1,8 @@
-Button
-LineEdit
 Label
+ItemList
+Button
+LinkButton
+LineEdit
 TextEdit
 RichTextLabel
 Node2D

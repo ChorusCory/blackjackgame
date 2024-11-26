@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4wp8i6q8hp88"]
+[gd_scene load_steps=10 format=3 uid="uid://b4wp8i6q8hp88"]
 
 [ext_resource type="Script" path="res://Logic.gd" id="1_3qodn"]
 [ext_resource type="AudioStream" uid="uid://dsr0tqgrxtku5" path="res://mus/that.ogg" id="2_fcaqn"]
 [ext_resource type="FontFile" uid="uid://byw8dbpncook4" path="res://NiseJSRF.TTF" id="2_x1l4h"]
 [ext_resource type="AudioStream" uid="uid://q568il08nx7j" path="res://mus/barry.mp3" id="3_oisb1"]
 [ext_resource type="AudioStream" uid="uid://c30v4o1i1uaqi" path="res://mus/breathe.ogg" id="5_xi3mi"]
+[ext_resource type="AudioStream" uid="uid://7rw84s4h4s2v" path="res://mus/izzo.mp3" id="6_51e0e"]
 [ext_resource type="Script" path="res://Lobby.gd" id="6_frqgt"]
 
 [sub_resource type="Theme" id="Theme_pwwp0"]
@@ -13,13 +14,15 @@ default_font = ExtResource("2_x1l4h")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7j203"]
 playback_mode = 1
-streams_count = 3
+streams_count = 4
 stream_0/stream = ExtResource("2_fcaqn")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_oisb1")
 stream_1/weight = 1.0
 stream_2/stream = ExtResource("5_xi3mi")
 stream_2/weight = 1.0
+stream_3/stream = ExtResource("6_51e0e")
+stream_3/weight = 1.0
 
 [node name="Node2D" type="Node2D"]
 
