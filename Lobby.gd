@@ -26,6 +26,7 @@ var players_loaded = 0
 
 
 func _ready():
+	randomize()
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_ok)
@@ -36,6 +37,7 @@ func _ready():
 func join_game(address = ""):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
+
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, PORT)
 	if error:
@@ -52,7 +54,7 @@ func create_game():
 		return error
 	multiplayer.multiplayer_peer = peer
 
-	players[1] = player_info
+	players[0] = player_info
 	player_connected.emit(1, player_info)
 
 

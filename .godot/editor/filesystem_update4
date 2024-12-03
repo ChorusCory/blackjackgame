@@ -3,7 +3,5 @@ res://title.tscn
 res://multiplayer.tscn
 res://join.tscn
 res://create.tscn
-res://Lobby.gd
-res://LinkButton.gd
-res://join.gd
 res://join_server.gd
+res://playernames.gd

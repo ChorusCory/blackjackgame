@@ -5,12 +5,14 @@ extends Node2D
 
 
 func _on_line_edit_text_submitted(new_text):
-	print(lobby.join_game())
+	print(lobby.join_game(new_text))
 	lobby.load_game.rpc("node_2d.tscn")
 	pass # Replace with function body.
 
 
 func _on_button_pressed():
+	lobby.join_game()
+	lobby.load_game.rpc("node_2d.tscn")
 	pass # Replace with function body.
 
 

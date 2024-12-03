@@ -16,13 +16,9 @@ default_font = ExtResource("2_x1l4h")
 playback_mode = 1
 streams_count = 4
 stream_0/stream = ExtResource("2_fcaqn")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("3_oisb1")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("5_xi3mi")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("6_51e0e")
-stream_3/weight = 1.0
 
 [node name="Node2D" type="Node2D"]
 
