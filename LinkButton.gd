@@ -6,4 +6,4 @@ extends Button
 
 func _on_pressed():
 	
-	print(lobby.create_game())
+	lobby.create_game()

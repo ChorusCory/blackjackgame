@@ -24,7 +24,6 @@ var player_info = {"name": "CORY"}
 var players_loaded = 0
 
 
-
 func _ready():
 	randomize()
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -34,7 +33,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
-func join_game(address = ""):
+func join_game(name, address = ""):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
 
@@ -43,6 +42,9 @@ func join_game(address = ""):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+
+	# Set the player's name before connecting
+	player_info["name"] = name
 
 	return players
 
@@ -62,14 +64,11 @@ func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = null
 
 
-# When the server decides to start the game from a UI scene,
-# do Lobby.load_game.rpc(filepath)
 @rpc("call_local", "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 
 
-# Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
 	if multiplayer.is_server():

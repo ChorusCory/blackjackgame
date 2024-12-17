@@ -3,5 +3,4 @@ res://title.tscn
 res://multiplayer.tscn
 res://join.tscn
 res://create.tscn
-res://join_server.gd
 res://playernames.gd
