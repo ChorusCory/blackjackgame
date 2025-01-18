@@ -3,4 +3,4 @@ res://title.tscn
 res://multiplayer.tscn
 res://join.tscn
 res://create.tscn
-res://playernames.gd
+res://Logic.gd

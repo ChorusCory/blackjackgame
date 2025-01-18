@@ -16,10 +16,12 @@ var dealer_deck = []
 var player1_decknum = 0
 var dealer_decknum = 0
 var bet_amount = 0
+var chips = 100
 @onready var bet_edit = $BetEdit
 @onready var bet_text = bet_edit.text
 @onready var deal_amount = $DealAmount
 @onready var play_amount = $PlayAmount
+@onready var chip_amount = $ChipAmount
 const BLACKJACK_PAY = 1.5
 const WIN_PAY = 1
 const INSURANCE_PAY = 2
@@ -92,13 +94,15 @@ func _process(_delta):
 	pass
 
 func _on_bet_pressed():
+	if chips <= 0:
+		OS.kill(OS.get_process_id())
 	player1_deck.clear()
 	dealer_deck.clear()
 	deal()
 	bet_amount = int(bet_text)
 	deck_value(player1_deck, dealer_deck)
-	deal_amount.text = str(dealer_decknum)
-	play_amount.text = str(player1_decknum)
+	deal_amount.text = ("Dealer: " + str(dealer_decknum))
+	play_amount.text = ("You: " + str(player1_decknum))
 
 func _on_bet_edit_text_changed(new_text):
 	bet_text = new_text
@@ -107,14 +111,29 @@ func _on_hit_pressed():
 	player1_deck.append(deck[current_place])
 	current_place += 1
 	deck_value(player1_deck, dealer_deck)
-	deal_amount.text = str(dealer_decknum)
-	play_amount.text = str(player1_decknum)
+	deal_amount.text = ("Dealer: " + str(dealer_decknum))
+	play_amount.text = ("You: " + str(player1_decknum))
 	if player1_decknum > 21:
 		print("Bust!")
 		print(player1_decknum)
 		player1_deck.clear()
 		dealer_deck.clear()
-		play_amount.text = "Bust! " + str(player1_decknum)
+		play_amount.text = "Bust! You: " + str(player1_decknum)
+		chips -= bet_amount
+		chip_amount.text = ("Chips: " + str(chips))
 
 func _on_stand_pressed():
-	dealer_only_deal() # Replace with function body.
+	while dealer_decknum < 17:
+		dealer_only_deal()
+		deal_amount.text = ("Dealer: " + str(dealer_decknum))
+		await get_tree().create_timer(0.5).timeout
+	if dealer_decknum > 21 or (player1_decknum > dealer_decknum and dealer_decknum > 16):
+		deal_amount.text = ("You win! Dealer: " + str(dealer_decknum))
+		chips += bet_amount
+		print(chips)
+		chip_amount.text = ("Chips: " + str(chips))
+	elif dealer_decknum > player1_decknum and dealer_decknum > 16:
+		deal_amount.text = ("Dealer wins! Dealer: " + str(dealer_decknum))
+		chips -= bet_amount
+		print(chips)
+		chip_amount.text = ("Chips: " + str(chips))
