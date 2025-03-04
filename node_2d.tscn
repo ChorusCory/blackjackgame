@@ -48,6 +48,7 @@ offset_top = 674.0
 offset_right = 790.0
 offset_bottom = 786.0
 theme_override_fonts/font = ExtResource("2_x1l4h")
+disabled = true
 text = "Hit me!"
 
 [node name="Stand" type="Button" parent="Logic"]
@@ -56,6 +57,7 @@ offset_top = 675.0
 offset_right = 1379.0
 offset_bottom = 787.0
 theme_override_fonts/font = ExtResource("2_x1l4h")
+disabled = true
 text = "I'll stand..."
 
 [node name="DealAmount" type="Label" parent="Logic"]

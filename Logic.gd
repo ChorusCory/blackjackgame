@@ -22,6 +22,8 @@ var chips = 100
 @onready var deal_amount = $DealAmount
 @onready var play_amount = $PlayAmount
 @onready var chip_amount = $ChipAmount
+@onready var hit_button = $Hit
+@onready var stand_button = $Stand
 const BLACKJACK_PAY = 1.5
 const WIN_PAY = 1
 const INSURANCE_PAY = 2
@@ -54,7 +56,7 @@ func get_card_value(card: String) -> int:
 		
 func deal():
 	if current_place > 48:
-		return
+		deck.shuffle()
 	for i in range(4):
 		if (i % 2) != 1:
 			player1_deck.append(deck[current_place])
@@ -94,7 +96,10 @@ func _process(_delta):
 	pass
 
 func _on_bet_pressed():
-	if chips <= 0:
+	hit_button.disabled = false
+	stand_button.disabled = false
+	if chips < int(bet_text):
+		print("fak u >:(")
 		OS.kill(OS.get_process_id())
 	player1_deck.clear()
 	dealer_deck.clear()
@@ -128,12 +133,21 @@ func _on_stand_pressed():
 		deal_amount.text = ("Dealer: " + str(dealer_decknum))
 		await get_tree().create_timer(0.5).timeout
 	if dealer_decknum > 21 or (player1_decknum > dealer_decknum and dealer_decknum > 16):
+		hit_button.disabled = true
+		stand_button.disabled = true
 		deal_amount.text = ("You win! Dealer: " + str(dealer_decknum))
 		chips += bet_amount
 		print(chips)
 		chip_amount.text = ("Chips: " + str(chips))
 	elif dealer_decknum > player1_decknum and dealer_decknum > 16:
+		hit_button.disabled = true
+		stand_button.disabled = true
 		deal_amount.text = ("Dealer wins! Dealer: " + str(dealer_decknum))
 		chips -= bet_amount
 		print(chips)
+		chip_amount.text = ("Chips: " + str(chips))
+	elif dealer_decknum == player1_decknum:
+		hit_button.disabled = true
+		stand_button.disabled = true
+		deal_amount.text = ("Tie! Dealer: " + str(dealer_decknum))
 		chip_amount.text = ("Chips: " + str(chips))

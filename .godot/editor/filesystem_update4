@@ -4,3 +4,4 @@ res://multiplayer.tscn
 res://join.tscn
 res://create.tscn
 res://Logic.gd
+res://Lobby.gd
