@@ -13,7 +13,7 @@ offset_right = 1041.0
 offset_bottom = 483.0
 theme_override_fonts/font = ExtResource("1_ym8su")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "Type your"
+placeholder_text = "Room Code"
 alignment = 1
 
 [node name="UserName" type="LineEdit" parent="."]
@@ -23,7 +23,7 @@ offset_right = 1036.0
 offset_bottom = 313.0
 theme_override_fonts/font = ExtResource("1_ym8su")
 theme_override_font_sizes/font_size = 30
-placeholder_text = "Username"
+placeholder_text = "UserName"
 alignment = 1
 
 [node name="Button" type="Button" parent="."]

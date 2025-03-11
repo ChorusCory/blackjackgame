@@ -98,7 +98,7 @@ func _process(_delta):
 func _on_bet_pressed():
 	hit_button.disabled = false
 	stand_button.disabled = false
-	if chips < int(bet_text):
+	if chips < int(bet_text) or int(bet_text) == 0:
 		print("fak u >:(")
 		OS.kill(OS.get_process_id())
 	player1_deck.clear()

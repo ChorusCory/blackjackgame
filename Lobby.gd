@@ -23,6 +23,7 @@ var player_info = {"name": "CORY"}
 
 var players_loaded = 0
 
+var room_id: int
 
 func _ready():
 	randomize()
@@ -33,23 +34,31 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 
-func join_game(name, address = ""):
+func join_game(name, room_code, address = ""):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
 
+	print(room_id)
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(address, PORT)
+	print(error)
 	if error:
 		return error
-	multiplayer.multiplayer_peer = peer
+	if int(room_code) == room_id:
+		multiplayer.multiplayer_peer = peer
+		player_info["name"] = name
+		return players
+	if int(room_code) != room_id:
+		print("bruh")
+		return
 
 	# Set the player's name before connecting
-	player_info["name"] = name
-
-	return players
+	
 
 
 func create_game():
+	room_id = randi_range(0, 9999)
+	print(room_id)
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, MAX_CONNECTIONS)
 	if error:
@@ -95,8 +104,9 @@ func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
 
-func create_room():
-	var room_id = randi_range(0, 9999)
+#func create_room():
+	room_id = randi_range(0, 9999)
+	print(room_id)
 	var peer = ENetConnection.new()
 	var error = peer.create_host_bound(DEFAULT_SERVER_IP, PORT)
 	
